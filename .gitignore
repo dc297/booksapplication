@@ -261,6 +261,5 @@ __pycache__/
 *.pyc
 
 ./data
-./BooksApplication/data
 .vscode
-./BooksApplication/wwwroot
+BooksApplication/wwwroot
