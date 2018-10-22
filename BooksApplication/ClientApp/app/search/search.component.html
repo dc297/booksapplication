@@ -1,0 +1,24 @@
+<h2>Book Search</h2>
+<div>
+  <label>Search by book name:
+    <input [(ngModel)]="query" placeholder="query" (keyup)="autocomplete()">
+    <button (click)="search()">search</button>
+  </label>
+</div>
+<div *ngIf="suggestions">
+  <b>Suggestions: </b><span *ngFor="let suggestion of suggestions" (click) = "suggestionClick(suggestion)">{{suggestion.name}} | </span>
+</div>
+<div *ngIf="searchResults">
+  <div><b>Total Results: </b>{{searchResults.total}}</div>
+  <div><b>Page Number: </b>{{searchResults.page}}</div>
+  <div><b>Page Size: </b>{{searchResults.pagesize}}</div>
+  <div><b>Elapsed Time(ms): </b>{{searchResults.elapsedMilliseconds}}</div>
+
+  <ul>
+    <li *ngFor="let result of searchResults.results">
+        <div><b>Book Name: </b>{{result.name}}</div>
+        <div><b>Book Description: </b>{{result.description}}</div>
+        <div><b>Author Name: </b>{{result.authorname}}</div>
+    </li>
+  </ul>
+</div>

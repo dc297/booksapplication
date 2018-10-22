@@ -1,0 +1,11 @@
+<h2>Books will appear here</h2>
+<div *ngIf="authors">
+  <ul *ngFor="let author of authors">
+    <div><h2>{{author.name}}'s Books:</h2></div>
+    <li *ngFor="let book of author.books">
+      <div><b>Book Name:</b> {{book.name}}</div>
+      <div><b>Book Description:</b> {{book.description}}</div>
+      <div><b>Book Cover:</b> <img src="/api/covers/{{book.coverId}}" width="100px"/></div>
+    </li>
+  </ul>
+</div>

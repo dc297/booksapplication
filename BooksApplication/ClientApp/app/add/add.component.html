@@ -1,0 +1,12 @@
+<h2>Add a Book</h2>
+<div>Author Name: <input [(ngModel)]="addRequest.name" placeholder="Author name" /></div>
+<div>Book Name: <input [(ngModel)]="addRequest.books[0].name" placeholder="Book name" /></div>
+<div>Book Name: <input [(ngModel)]="addRequest.books[0].description" placeholder="Book Description" /></div>
+<div>
+  Book Cover:
+  <input type="file" [(ngModel)] = "file" accept="image/png, image/jpeg" #picked
+  id="picked" (click)="uploadStatus=''"
+  (change)="upload(picked)"/>
+  <span *ngIf="uploadStatus">{{uploadStatus}}</span>
+</div>
+<div><button (click)="save()">Add Book</button></div>
