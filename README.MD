@@ -23,7 +23,9 @@ Running using docker-compose:
 
     2. Run docker-compose up
 
-    3. Go to http://localhost:60834
+    3. Wait for the application to start
+
+    4. The application will be available at http://localhost:60834
 
 This is a simple application to maintain details about books divided into 4 parts:
 
