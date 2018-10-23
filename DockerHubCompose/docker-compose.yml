@@ -41,6 +41,3 @@ services:
       - ASPNETCORE_URLS=http://+:8080
     ports:
       - "60834:8080"
-    volumes:
-      - ./Https:/root/.aspnet/https:ro
-      - ./UserSecrets:/root/.microsoft/usersecrets:ro
