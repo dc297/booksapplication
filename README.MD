@@ -1,13 +1,21 @@
 #Books Application
 
 A dotnet API application with Angular Front End to demonstrate the usage of:
+
     - Entity Framework v2.1.2
+
     - Redis v5.0.0
+
     - MongoDB v4.0
+
     - ElasticSearch v6.2.4
+
     - PostgreSQL v11.0
+
     - dotnet v2.1
+
     - Angular v7.0.0
+    
 
 Running using docker-compose:
 
