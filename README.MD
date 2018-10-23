@@ -16,6 +16,9 @@ A dotnet API application with Angular Front End to demonstrate the usage of:
 
     - Angular v7.0.0
 
+Before running the application, make sure you have installed Docker and it is running on your machine. For getting started with Docker, follow this link : https://www.docker.com/products/docker-desktop
+
+Test your docker installation following the steps on this link : https://docs.docker.com/get-started/#test-docker-installation
 
 Running using docker-compose:
 
