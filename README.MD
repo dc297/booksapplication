@@ -1,4 +1,4 @@
-#Books Application
+# Books Application
 
 A dotnet API application with Angular Front End to demonstrate the usage of:
 
@@ -15,7 +15,7 @@ A dotnet API application with Angular Front End to demonstrate the usage of:
     - dotnet v2.1
 
     - Angular v7.0.0
-    
+
 
 Running using docker-compose:
 
