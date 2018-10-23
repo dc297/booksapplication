@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+
+  redis:
+    container_name: redis
+    image: redis:5.0.0
+    ports:
+      - "6379:6379"
+    entrypoint: 
+      redis-server --appendonly yes
+
+  db:
+    container_name: database
+    image: postgres:11.0
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  mongodb:
+    image: 'bitnami/mongodb:4.1.4-ol-7-r10'
+    container_name: 'mongodb'
+    ports:
+      - '27017:27017'
+
+  booksapplication:
+    container_name: booksapplication
+    image: 'dc297/booksapplication:firsttry'
+    depends_on:
+      - "db"
+      - "redis"
+      - "elasticsearch"
+      - "mongodb"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    ports:
+      - "60834:8080"
+    volumes:
+      - ./Https:/root/.aspnet/https:ro
+      - ./UserSecrets:/root/.microsoft/usersecrets:ro
