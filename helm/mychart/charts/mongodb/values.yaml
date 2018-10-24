@@ -157,7 +157,7 @@ persistence:
   # storageClass: "-"
   accessModes:
     - ReadWriteOnce
-  size: 8Gi
+  size: 1Gi
   annotations: {}
 
 ## Configure extra options for liveness and readiness probes

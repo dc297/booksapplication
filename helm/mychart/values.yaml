@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: dc297/booksapplication
-  tag: firsttry
+  tag: thirdtry
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -14,7 +14,7 @@ fullnameOverride: ""
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 ingress:
   enabled: false
@@ -28,17 +28,6 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-
-# Override default liveness & readiness probes
-probes:
-  liveness:
-    initialDelay: 120
-    timeoutSeconds: 30
-    failureThreshold: 6
-  readiness:
-    initialDelay: 120
-    timeoutSeconds: 30
-    periodSeconds: 5
   
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

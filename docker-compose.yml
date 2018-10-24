@@ -6,37 +6,33 @@ services:
     container_name: elasticsearch
     ports:
       - "9200:9200"
-    volumes:
-      - ../data/elasticsearch:/usr/share/elasticsearch/data
 
   redis:
     container_name: redis
-    image: redis
+    image: redis:5.0.0
     ports:
       - "6379:6379"
-    volumes:
-      - ../data/redis:/data
     entrypoint: 
       redis-server --appendonly yes
 
   db:
     container_name: database
-    image: postgres
+    image: postgres:11.0
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
 
   mongodb:
-    image: 'bitnami/mongodb:latest'
-    container_name: 'mongodb'
+    image: 'bitnami/mongodb:4.1.4-ol-7-r10'
+    container_name: mongodb
     ports:
-      - '27017:27017'
-    volumes:
-      - '../data/mongo:/data/db'
-      - '../data/mongoconfig:/data/configdb'
+      - "27017:27017"
 
   booksapplication:
     container_name: booksapplication
+    image: 'dc297/booksapplication:firsttry'
     image: ${DOCKER_REGISTRY}booksapplication
     build:
       context: .
@@ -46,3 +42,12 @@ services:
       - "redis"
       - "elasticsearch"
       - "mongodb"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - REDISCONNECTIONSTRING=redis:6379
+      - PGCONNECTIONSTRING=Host=database;Username=postgres;Password=postgres;Database=booksappdb;Port=5432
+      - MONGOCONNECTIONSTRING=mongodb://mongodb:27017
+      - ELASTICCONNECTIONSTRING=http://elasticsearch:9200
+    ports:
+      - "60834:8080"

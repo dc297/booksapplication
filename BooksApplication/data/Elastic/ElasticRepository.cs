@@ -1,5 +1,4 @@
 ﻿using BooksApplication.data.Postgres;
-using BooksApplication.Settings;
 using Microsoft.Extensions.Options;
 using Nest;
 
@@ -9,10 +8,10 @@ namespace BooksApplication.data.Elastic
     {
         ElasticClient _client;
         string index;
-        public ElasticRepository(ElasticClientProvider provider, IOptions<ElasticConnectionSettings> settings)
+        public ElasticRepository(ElasticClientProvider provider)
         {
             _client = provider.Client;
-            index = settings.Value.DefaultIndex;
+            index = "book";
         }
 
         public void AddAuthorWithBook(Author author)

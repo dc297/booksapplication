@@ -13,7 +13,7 @@ image:
   ## Bitnami Redis image tag
   ## ref: https://github.com/bitnami/bitnami-docker-redis#supported-tags-and-respective-dockerfile-links
   ##
-  tag: "5.0.0"
+  tag: "4.0.11"
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -28,20 +28,20 @@ image:
 
 ## Cluster settings
 cluster:
-  enabled: true
-  slaveCount: 1
+  enabled: false
+  slaveCount: 0
 
 networkPolicy:
   ## Specifies whether a NetworkPolicy should be created
   ##
-  enabled: false
+  enabled: true
 
   ## The Policy model to apply. When set to false, only pods with the correct
   ## client label will have network access to the port Redis is listening
   ## on. When true, Redis will accept connections from any source
   ## (with the correct destination port).
   ##
-  # allowExternal: true
+  allowExternal: true
 
 serviceAccount:
   ## Specifies whether a ServiceAccount should be created
@@ -124,8 +124,8 @@ master:
   ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
   # resources:
   #   requests:
-  #     memory: 256Mi
-  #     cpu: 100m
+  #     memory: 64Mi
+  #     cpu: 25m
   ## Use an alternate scheduler, e.g. "stork".
   ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
   ##
@@ -205,7 +205,7 @@ master:
     # storageClass: "-"
     accessModes:
     - ReadWriteOnce
-    size: 8Gi
+    size: 1Gi
 
   ## Update strategy, can be set to RollingUpdate or onDelete by default.
   ## https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#updating-statefulsets
@@ -221,11 +221,11 @@ master:
 ## Note: serviceType and service are mandatory parameters
 ## The rest of the parameters, if undefined, will inherit those declared in Redis Master
 ##
-slave:
+#slave:
   ## Slave Service properties
-  service:
+  #service:
     ##  Redis Slave Service type
-    type: ClusterIP
+   # type: ClusterIP
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
     ##
@@ -235,8 +235,8 @@ slave:
     ## set the LoadBalancer service type to internal only.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
     ##
-    annotations: {}
-    loadBalancerIP:
+    #annotations: {}
+    #loadBalancerIP:
 
   ## Redis port
   # port: 6379
@@ -249,7 +249,7 @@ slave:
 
   ## Redis Slave pod/node affinity/anti-affinity
   ##
-  affinity: {}
+  #affinity: {}
 
   ## Configure extra options for Redis Slave liveness and readiness probes
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes)

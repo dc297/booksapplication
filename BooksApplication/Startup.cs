@@ -3,7 +3,6 @@ using BooksApplication.data.Elastic;
 using BooksApplication.Middleware;
 using BooksApplication.Providers;
 using BooksApplication.Services;
-using BooksApplication.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BooksApplication.data.Mongo;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using System;
 
 namespace BooksApplication
 {
@@ -28,20 +28,16 @@ namespace BooksApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AuthorContext>(options =>
-                options.UseNpgsql(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Environment.GetEnvironmentVariable("PGCONNECTIONSTRING")));
 
             services.AddOptions();
-            services.Configure<ElasticConnectionSettings>(Configuration.GetSection("ElasticConnectionSettings"));
-
-            services.Configure<RedisConnectionSettings>(Configuration.GetSection("RedisConnectionSettings"));
 
             // Register the client provider as a singleton
             services.AddSingleton(typeof(ElasticClientProvider));
 
             services.AddSingleton(MongoClientProvider =>
             {
-                return new MongoClientProvider(Configuration.GetConnectionString("MongoDB"));
+                return new MongoClientProvider(Environment.GetEnvironmentVariable("MONGOCONNECTIONSTRING"));
             });
 
             services.AddScoped<IAuthorsRepository, AuthorsRepository>();

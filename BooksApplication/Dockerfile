@@ -30,3 +30,4 @@ COPY --from=publish /app .
 COPY BooksApplication/ClientApp /app/ClientApp
 RUN npm i
 ENTRYPOINT ["dotnet", "BooksApplication.dll"]
+CMD ["dotnet", "BooksApplication.dll"]

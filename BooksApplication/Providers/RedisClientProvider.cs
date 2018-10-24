@@ -1,6 +1,6 @@
-﻿using BooksApplication.Settings;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using StackExchange.Redis;
+using System;
 
 namespace BooksApplication.Providers
 {
@@ -8,9 +8,9 @@ namespace BooksApplication.Providers
     {
         public readonly ConnectionMultiplexer redisClient;
 
-        public RedisClientProvider(IOptions<RedisConnectionSettings> settings)
+        public RedisClientProvider()
         {
-            redisClient = ConnectionMultiplexer.Connect(settings.Value.Url);
+            redisClient = ConnectionMultiplexer.Connect(Environment.GetEnvironmentVariable("REDISCONNECTIONSTRING"));
         }
     }
 }

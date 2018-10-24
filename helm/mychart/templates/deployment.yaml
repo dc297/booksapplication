@@ -25,16 +25,48 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           livenessProbe:
             httpGet:
               path: /
               port: http
+            initialDelay: 120
+            timeoutSeconds: 30
+            periodSeconds: 30
+            failureThreshold: 6
           readinessProbe:
             httpGet:
               path: /
               port: http
+            initialDelay: 120
+            timeoutSeconds: 30
+            periodSeconds: 30
+          env:
+            - name: REDISCONNECTIONSTRING
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: redis_url
+            - name: PGCONNECTIONSTRING
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: postgre_conn_str
+            - name: MONGOCONNECTIONSTRING
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: mongo_url
+            - name: ELASTICCONNECTIONSTRING
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: elastic_url
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: ASPNETCORE_URLS
+              value: "http://+:8080"
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}

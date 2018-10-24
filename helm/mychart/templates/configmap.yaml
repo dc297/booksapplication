@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+  namespace: default
+data:
+  redis_url: "{{ .Release.Name }}-redis-master"
+  postgre_conn_str: "Host={{ .Release.Name }}-postgresql:5432;Username=postgres;Password=postgres;Database=booksappdb;Port=5432"
+  elastic_url: "http://{{ .Release.Name }}-elasticsearch-client:9200"
+  mongo_url: "mongodb://{{ .Release.Name }}-mongodb:27017"

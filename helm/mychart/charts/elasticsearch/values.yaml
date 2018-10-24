@@ -31,11 +31,11 @@ cluster:
     # IMPORTANT: https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#minimum_master_nodes
     # To prevent data loss, it is vital to configure the discovery.zen.minimum_master_nodes setting so that each master-eligible
     # node knows the minimum number of master-eligible nodes that must be visible in order to form a cluster.
-    MINIMUM_MASTER_NODES: "2"
+    MINIMUM_MASTER_NODES: "1"
 
 client:
   name: client
-  replicas: 2
+  replicas: 1
   serviceType: ClusterIP
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
@@ -51,10 +51,10 @@ client:
   resources:
     limits:
       cpu: "1"
-      # memory: "1024Mi"
+      # memory: "256Mi"
     requests:
-      cpu: "25m"
-      memory: "512Mi"
+      cpu: "5m"
+      memory: "128Mi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each client Pod
   # podAnnotations:
@@ -67,13 +67,13 @@ client:
 master:
   name: master
   exposeHttp: false
-  replicas: 3
-  heapSize: "512m"
+  replicas: 1
+  heapSize: "128m"
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "4Gi"
+    size: "1Gi"
     # storageClass: "ssd"
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -82,17 +82,17 @@ master:
   resources:
     limits:
       cpu: "1"
-      # memory: "1024Mi"
+      # memory: "256Mi"
     requests:
-      cpu: "25m"
-      memory: "512Mi"
+      cpu: "6m"
+      memory: "128Mi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each master Pod
   # podAnnotations:
   #   example: master-foo
   podDisruptionBudget:
     enabled: false
-    minAvailable: 2  # Same as `cluster.env.MINIMUM_MASTER_NODES`
+    minAvailable: 1  # Same as `cluster.env.MINIMUM_MASTER_NODES`
     # maxUnavailable: 1
   updateStrategy:
     type: OnDelete
@@ -100,13 +100,13 @@ master:
 data:
   name: data
   exposeHttp: false
-  replicas: 2
-  heapSize: "1536m"
+  replicas: 1
+  heapSize: "384m"
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "30Gi"
+    size: "1Gi"
     # storageClass: "ssd"
   terminationGracePeriodSeconds: 3600
   antiAffinity: "soft"
@@ -116,10 +116,10 @@ data:
   resources:
     limits:
       cpu: "1"
-      # memory: "2048Mi"
+      memory: "256Mi"
     requests:
-      cpu: "25m"
-      memory: "1536Mi"
+      cpu: "6m"
+      memory: "128Mi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each data Pod
   # podAnnotations:
