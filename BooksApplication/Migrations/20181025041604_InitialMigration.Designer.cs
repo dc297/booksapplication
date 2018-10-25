@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BooksApplication.Migrations
 {
     [DbContext(typeof(AuthorContext))]
-    [Migration("20181021094307_InitialMigration")]
+    [Migration("20181025041604_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

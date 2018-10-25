@@ -32,7 +32,7 @@ services:
 
   booksapplication:
     container_name: booksapplication
-    image: 'dc297/booksapplication:firsttry'
+#    image: 'dc297/booksapplication:firsttry'
     image: ${DOCKER_REGISTRY}booksapplication
     build:
       context: .

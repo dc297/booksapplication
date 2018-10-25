@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: dc297/booksapplication
-  tag: thirdtry
+  tag: fourthtry
   pullPolicy: IfNotPresent
 
 nameOverride: ""
