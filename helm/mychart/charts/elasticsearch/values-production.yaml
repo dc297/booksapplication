@@ -23,6 +23,46 @@ image:
   # pullSecrets:
   #   - myRegistrKeySecretName
 
+## Elasticsearch cluster name
+##
+name: elastic
+
+## Customize elasticsearch configuration
+## ref: https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
+##
+config:
+
+## Elasticsearch master-eligible node parameters
+##
+master:
+  name: master
+  replicas: 3
+  heapSize: 128m
+  antiAffinity: "soft"
+  ## Configure resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:
+    requests:
+      cpu: 25m
+      memory: "256Mi"
+  ## Elasticsearch master-eligible Liveness Probe
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+  ## Elasticsearch master-eligible Readiness Probe
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+
 ## Image that performs the sysctl operation
 ##
 sysctlImage:
@@ -42,51 +82,6 @@ sysctlImage:
   # pullSecrets:
   #   - myRegistrKeySecretName
 
-## Elasticsearch cluster name
-##
-name: elastic
-
-## Customize elasticsearch configuration
-## ref: https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
-##
-config:
-
-## Elasticsearch master-eligible node parameters
-##
-master:
-  name: master
-  replicas: 2
-  heapSize: 128m
-  antiAffinity: "soft"
-  ## Configure resource requests and limits
-  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
-  ##
-  resources:
-    requests:
-      cpu: 25m
-      memory: "256Mi"
-  ## Elasticsearch master-eligible Liveness Probe
-  livenessProbe:
-    enabled: false
-  #  initialDelaySeconds: 90
-  #  periodSeconds: 10
-  #  timeoutSeconds: 5
-  #  successThreshold: 1
-  #  failureThreshold: 5
-  ## Elasticsearch master-eligible Readiness Probe
-  readinessProbe:
-    enabled: false
-  #  initialDelaySeconds: 90
-  #  periodSeconds: 10
-  #  timeoutSeconds: 5
-  #  successThreshold: 1
-  #  failureThreshold: 5
-
-## Elasticsearch discovery node parameters
-##
-discovery:
-  name: discovery
-
 ## Pod Security Context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
@@ -95,11 +90,16 @@ securityContext:
   fsGroup: 1001
   runAsUser: 1001
 
+## Elasticsearch discovery node parameters
+##
+discovery:
+  name: discovery
+
 ## Elasticsearch coordinating-only node parameters
 ##
 coordinating:
   name: coordinating-only
-  replicas: 1
+  replicas: 2
   heapSize: 128m
   antiAffinity: "soft"
   service:
@@ -115,26 +115,26 @@ coordinating:
       memory: "256Mi"
   ## Elasticsearch master-eligible Liveness Probe
   livenessProbe:
-    enabled: false
-  #  initialDelaySeconds: 90
-  #  periodSeconds: 10
-  #  timeoutSeconds: 5
-  #  successThreshold: 1
-  #  failureThreshold: 5
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
   ## Elasticsearch master-eligible Readiness Probe
   readinessProbe:
-    enabled: false
-  #  initialDelaySeconds: 90
-  #  periodSeconds: 10
-  #  timeoutSeconds: 5
-  #  successThreshold: 1
-  #  failureThreshold: 5
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
 
 ## Elasticsearch data node parameters
 ##
 data:
   name: data
-  replicas: 1
+  replicas: 3
   heapSize: 1024m
   antiAffinity: "soft"
   ## Configure resource requests and limits
@@ -143,23 +143,23 @@ data:
   resources:
     requests:
       cpu: 25m
-      memory: "256Mi"
+      memory: "1152Mi"
   ## Elasticsearch master-eligible Liveness Probe
   livenessProbe:
-    enabled: false
-  #  initialDelaySeconds: 90
-  #  periodSeconds: 10
-  #  timeoutSeconds: 5
-  #  successThreshold: 1
-  #  failureThreshold: 5
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
   ## Elasticsearch master-eligible Readiness Probe
   readinessProbe:
-    enabled: false
-  #  initialDelaySeconds: 90
-  #  periodSeconds: 10
-  #  timeoutSeconds: 5
-  #  successThreshold: 1
-  #  failureThreshold: 5
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
   ## Enable persistence using Persistent Volume Claims
   ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
   ##
@@ -187,14 +187,14 @@ data:
 
     ## Persistent Volume size
     ##
-    size: 1Gi
+    size: 8Gi
 
 ## Elasticsearch ingest node parameters
 ##
 ingest:
-  enabled: false
+  enabled: true
   name: ingest
-  replicas: 1
+  replicas: 2
   heapSize: 128m
   antiAffinity: "soft"
   ## Configure resource requests and limits
@@ -203,26 +203,26 @@ ingest:
   resources:
     requests:
       cpu: 25m
-      memory: "128Mi"
+      memory: "256Mi"
   ## Elasticsearch master-eligible Liveness Probe
   livenessProbe:
-    enabled: false
-  #  initialDelaySeconds: 90
-  #  periodSeconds: 10
-  #  timeoutSeconds: 5
-  #  successThreshold: 1
-  #  failureThreshold: 5
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
   ## Elasticsearch master-eligible Readiness Probe
   readinessProbe:
-    enabled: false
-  #  initialDelaySeconds: 90
-  #  periodSeconds: 10
-  #  timeoutSeconds: 5
-  #  successThreshold: 1
-  #  failureThreshold: 5
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
 
 metrics:
-  enabled: false
+  enabled: true
   name: metrics
   image:
     registry: docker.io
@@ -234,6 +234,6 @@ metrics:
     prometheus.io/port: "9108"
   service:
     type: ClusterIP
-  resources:
-    # requests:
-    #   cpu: 25m
+  resources: {}
+  #  requests:
+  #    cpu: 25m
