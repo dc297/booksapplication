@@ -52,14 +52,20 @@ This is a simple application to maintain details about books divided into 4 part
 ### 4. .NET Core 2.1
 
 	1. Download and install .NET core SDK from https://www.microsoft.com/net/download
+	
+	2. Check .Net version by executing > dotnet --version
 
 ### 5. Nodejs and npm
 
 	1. Install nodejs and npm from https://nodejs.org/
 	
+	2. Check node installation by executing > node -v
+	
 ### 6. Clone the repo from https://github.com/dc297/booksapplication/
 
 	1. Execute git clone https://github.com/dc297/booksapplication/ to clone the repo
+
+## Now you are ready to build/run from source or deploy to docker. If you want to deploy to a kubernetes cluster install the requisites below
 
 ### 7. kubectl
 
@@ -69,12 +75,14 @@ This is a simple application to maintain details about books divided into 4 part
 ### 8. minikube
 
 	1. Install minikube from the following link : https://github.com/kubernetes/minikube/releases
-	2. Start minikube
+	2. Check minikube installation by executing > minikube version
+	3. Start minikube
 		2.1 On Ubuntu, use the following command : > minikube start --vm-driver=none --logtostderr
 ### 9. Helm
 
 	1. Download and install helm from the following link : https://github.com/helm/helm/releases
-	2. Add binaries to path so that they are executable from Terminal/Command line
+	2. Check helm installation by executing > helm version
+	3. Add binaries to path so that they are executable from Terminal/Command line
 
 
 ## Steps to build/run from source:
