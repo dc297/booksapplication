@@ -56,6 +56,8 @@ This is a simple application to maintain details about books divided into 4 part
 	
 ### 6. Clone the repo from https://github.com/dc297/booksapplication/
 
+	1. Execute git clone https://github.com/dc297/booksapplication/ to clone the repo
+
 ### 7. kubectl
 
 	1. Install kubectl from the following link : https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl
