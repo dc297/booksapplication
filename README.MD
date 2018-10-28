@@ -81,6 +81,8 @@ This is a simple application to maintain details about books divided into 4 part
 
 	1. Change directory to booksapplication/BooksApplication/
 	
+	2. We need to increase the max value of map_count for elasticsearch. Execute > sudo sysctl -w vm.max_map_count=262144
+	
 	2. Deploy postgresql, elasticsearch, mongodb and redis on Docker by executing the following command > docker-compose up
 	
 	3. Open another terminal. Change directory to booksapplication/BooksApplication
