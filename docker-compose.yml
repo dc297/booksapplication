@@ -32,11 +32,7 @@ services:
 
   booksapplication:
     container_name: booksapplication
-#    image: 'dc297/booksapplication:firsttry'
-    image: ${DOCKER_REGISTRY}booksapplication
-    build:
-      context: .
-      dockerfile: BooksApplication/Dockerfile
+    image: 'dc297/booksapplication:fourthtry'
     depends_on:
       - "db"
       - "redis"
