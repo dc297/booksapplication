@@ -92,6 +92,8 @@ This is a simple application to maintain details about books divided into 4 part
 	5. Run npm i
 	
 	6. Run the application by executing run.bat
+	
+	7. By default, the application will be available at http://localhost:5000
 
 ## Steps to deploy the app on docker:
 
@@ -100,6 +102,8 @@ This is a simple application to maintain details about books divided into 4 part
 	2. Deploy  postgresql, elasticsearch, mongodb, redis and the application by executing > docker-compose up
 	
 	3. The above step uses a image hosted on docker hub to run the app.
+	
+	4. The application will be accessible on http://localhost:60834 by default. You can change this by editing the docker-compose.yml file in this directory.
 
 ## Steps to deploy the app on Kubernetes Cluster(using minikube):
 
@@ -109,4 +113,10 @@ This is a simple application to maintain details about books divided into 4 part
 	
 	3. Depending on your operating syste, you might need to install socat to deploy using helm. Execute the following command to install socat > sudo apt-get install socat
 	
-	3. Execute the following command to deploy to a kubernetes cluster > helm install --name booksapplication ./mychart --set service.type=NodePort
+	4. Execute the following command to deploy to a kubernetes cluster > helm install --name booksapplication ./mychart --set service.type=NodePort
+	
+	5. You can get the url for the application from the output of above command. Once the application starts, it will be available for use at that url
+	
+	6. Use minikube dashboard to monitor your pods. Start the dashboard by executing > minikube dashboard
+	
+	7. You might need to manually restart the booksapplication pod because sometimes the database takes more time to start than the application itself. I need to add a check to throw an exception if all the required services are not available yet.
