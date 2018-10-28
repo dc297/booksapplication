@@ -12,7 +12,7 @@ A dotnet API application with Angular Front End to demonstrate the usage of:
 
     - PostgreSQL v11.0
 
-    - dotnet v2.1
+    - .NET core v2.1
 
     - Angular v7.0.0
 
@@ -32,35 +32,72 @@ This is a simple application to maintain details about books divided into 4 part
 ## Prerequisites
 
 ### 1. Git
-	1. Install git from this link : https://git-scm.com/downloads
+
+	1. Install git by executing > sudo apt-get install git
 	
-Install Git
+### 2. Docker
 
-Windows: Enable Hyper-V - https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
+	1. Install Docker from the following link : https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1
+	2. Test docker installation by executing > docker version
+	3. Test if docker-compose is installed by executing > docker-compose version
+	4. If docker-compose is not installed, install it by following Step #3
 
-Install Docker from https://www.docker.com/products/docker-desktop
-Test docker installation by running > docker ps
+### 3. Docker-Compose
+
+	1. Depending on your operating system, you might need to install docker-compose separately. Install it from the following URL : https://docs.docker.com/compose/install/#install-compose
+	
+### 4. .NET Core 2.1
+
+	1. Download and install .NET core SDK from https://www.microsoft.com/net/download
+
+### 5. Nodejs and npm
+
+	1. Install nodejs and npm from https://nodejs.org/
+	
+### 6. Clone the repo from https://github.com/dc297/booksapplication/
+
+### 7. kubectl
+
+	1. Install kubectl from the following link : https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl
+	2. Test kubectl installation by executing > kubectl version
+	
+### 8. minikube
+
+	1. Install minikube from the following link : https://github.com/kubernetes/minikube/releases
+	2. Start minikube
+		2.1 On Ubuntu, use the following command : > minikube start --vm-driver=none --logtostderr
+### 9. Helm
+
+	1. Download and install helm from the following link : https://github.com/helm/helm/releases
+	2. Add binaries to path so that they are executable from Terminal/Command line
 
 
+## Steps to build/run from source:
 
-Download and install .NET core SDK from https://www.microsoft.com/net/download
+	1. Change directory to booksapplication/BooksApplication/
+	
+	2. Deploy postgresql, elasticsearch, mongodb and redis on Docker by executing the following command > docker-compose up
+	
+	3. Open another terminal. Change directory to booksapplication/BooksApplication
+	
+	4. Build the application by executing > dotnet build 
+	
+	5. Run npm i
+	
+	6. Run the application by executing run.bat
 
+## Steps to deploy the app on docker:
 
+	1. Change directory to booksapplication/
+	
+	2. Deploy  postgresql, elasticsearch, mongodb, redis and the application by executing > docker-compose up
+	
+	3. The above step uses a image hosted on docker hub to run the app.
 
-Clone the repo from https://github.com/dc297/booksapplication/
+## Steps to deploy the app on Kubernetes Cluster(using minikube):
 
-Install nodejs and npm from https://nodejs.org/en/
-
-Steps to build/run from source:
-1. Change directory to booksapplication/BooksApplication/
-2. Deploy postgresql, elasticsearch, mongodb and redis on Docker by executing the following command > docker-compose up
-3. Build the application by executing > dotnet build 
-4. Run npm i
-5. Run the application by executing run.bat
-
-Steps to deploy the app on docker:
-1. Change directory to booksapplication/
-2. Deploy  postgresql, elasticsearch, mongodb, redis and the application by executing > docker-compose up
-3. The above step uses a image hosted on docker hub to run the app.
-
-Steps to deploy the app on Kubernetes Cluster(using minikube):
+	1. Change directory to booksapplication/helm
+	
+	2. Execute > helm init
+	
+	3. Execute the following command to deploy to a kubernetes cluster > helm install --name booksapplication ./mychart --set service.type=NodePort
