@@ -35,7 +35,9 @@ A video demonstration is available here : https://goo.gl/EvP3fZ
 
 ### 1. Git
 
-	1. Install git by executing > sudo apt-get install git
+	1. 
+		1.1 Ubuntu: Install git by executing > sudo apt-get install git
+		1.2 Others: Install git from the following URL : https://git-scm.com/downloads
 	
 ### 2. Docker
 
@@ -91,7 +93,7 @@ A video demonstration is available here : https://goo.gl/EvP3fZ
 
 	1. Change directory to booksapplication/BooksApplication/
 	
-	2. We need to increase the max value of map_count for elasticsearch. Execute > sudo sysctl -w vm.max_map_count=262144
+	2. When using Ubuntu, we need to increase the max value of map_count for elasticsearch. Execute > sudo sysctl -w vm.max_map_count=262144
 	
 	2. Deploy postgresql, elasticsearch, mongodb and redis on Docker by executing the following command > docker-compose up
 	
@@ -99,9 +101,9 @@ A video demonstration is available here : https://goo.gl/EvP3fZ
 	
 	4. Build the application by executing > dotnet build 
 	
-	5. Run npm i
+	5. Install required node modules by executing > npm i
 	
-	6. Run the application by executing run.bat
+	6. Run the application by executing run.bat or run.sh
 	
 	7. By default, the application will be available at [http://localhost:5000]
 
@@ -121,7 +123,7 @@ A video demonstration is available here : https://goo.gl/EvP3fZ
 	
 	2. Execute > helm init
 	
-	3. Depending on your operating syste, you might need to install socat to deploy using helm. Execute the following command to install socat > sudo apt-get install socat
+	3. Depending on your operating system, you might need to install socat to deploy using helm. Execute the following command to install socat > sudo apt-get install socat
 	
 	4. Execute the following command to deploy to a kubernetes cluster > helm install --name booksapplication ./mychart --set service.type=NodePort
 	
