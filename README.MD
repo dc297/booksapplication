@@ -37,9 +37,12 @@ This is a simple application to maintain details about books divided into 4 part
 	
 ### 2. Docker
 
-	1. Install Docker from the following link : https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1
+	1. Install Docker from the following links : https://docs.docker.com/install/
+	
 	2. Test docker installation by executing > docker version
+	
 	3. Test if docker-compose is installed by executing > docker-compose version
+	
 	4. If docker-compose is not installed, install it by following Step #3
 
 ### 3. Docker-Compose
