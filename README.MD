@@ -107,4 +107,6 @@ This is a simple application to maintain details about books divided into 4 part
 	
 	2. Execute > helm init
 	
+	3. Depending on your operating syste, you might need to install socat to deploy using helm. Execute the following command to install socat > sudo apt-get install socat
+	
 	3. Execute the following command to deploy to a kubernetes cluster > helm install --name booksapplication ./mychart --set service.type=NodePort
