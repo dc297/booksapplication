@@ -37,7 +37,7 @@ This is a simple application to maintain details about books divided into 4 part
 	
 ### 2. Docker
 
-	1. Install Docker from the following links : https://docs.docker.com/install/
+	1. Install Docker from the following links : [https://docs.docker.com/install/]
 	
 	2. Test docker installation by executing > docker version
 	
@@ -47,17 +47,17 @@ This is a simple application to maintain details about books divided into 4 part
 
 ### 3. Docker-Compose
 
-	1. Depending on your operating system, you might need to install docker-compose separately. Install it from the following URL : https://docs.docker.com/compose/install/#install-compose
+	1. Depending on your operating system, you might need to install docker-compose separately. Install it from the following URL : [https://docs.docker.com/compose/install/#install-compose]
 	
 ### 4. .NET Core 2.1
 
-	1. Download and install .NET core SDK from https://www.microsoft.com/net/download
+	1. Download and install .NET core SDK from [https://www.microsoft.com/net/download]
 	
 	2. Check .Net version by executing > dotnet --version
 
 ### 5. Nodejs and npm
 
-	1. Install nodejs and npm from https://nodejs.org/
+	1. Install nodejs and npm from [https://nodejs.org]
 	
 	2. Check node installation by executing > node -v
 	
@@ -69,18 +69,18 @@ This is a simple application to maintain details about books divided into 4 part
 
 ### 7. kubectl
 
-	1. Install kubectl from the following link : https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl
+	1. Install kubectl from the following link : [https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl]
 	2. Test kubectl installation by executing > kubectl version
 	
 ### 8. minikube
 
-	1. Install minikube from the following link : https://github.com/kubernetes/minikube/releases
+	1. Install minikube from the following link : [https://github.com/kubernetes/minikube/releases]
 	2. Check minikube installation by executing > minikube version
 	3. Start minikube
 		2.1 On Ubuntu, use the following command : > minikube start --vm-driver=none --logtostderr
 ### 9. Helm
 
-	1. Download and install helm from the following link : https://github.com/helm/helm/releases
+	1. Download and install helm from the following link : [https://github.com/helm/helm/releases]
 	2. Check helm installation by executing > helm version
 	3. Add binaries to path so that they are executable from Terminal/Command line
 
@@ -101,7 +101,7 @@ This is a simple application to maintain details about books divided into 4 part
 	
 	6. Run the application by executing run.bat
 	
-	7. By default, the application will be available at http://localhost:5000
+	7. By default, the application will be available at [http://localhost:5000]
 
 ## Steps to deploy the app on docker:
 
@@ -111,7 +111,7 @@ This is a simple application to maintain details about books divided into 4 part
 	
 	3. The above step uses a image hosted on docker hub to run the app.
 	
-	4. The application will be accessible on http://localhost:60834 by default. You can change this by editing the docker-compose.yml file in this directory.
+	4. The application will be accessible on [http://localhost:60834] by default. You can change this by editing the docker-compose.yml file in this directory.
 
 ## Steps to deploy the app on Kubernetes Cluster(using minikube):
 
