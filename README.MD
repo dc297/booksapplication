@@ -29,6 +29,8 @@ This is a simple application to maintain details about books divided into 4 part
 
 # Building/Running the app:
 
+A video demonstration is available here : https://goo.gl/EvP3fZ
+
 ## Prerequisites
 
 ### 1. Git
